@@ -1,0 +1,582 @@
+/* ==================== CSS Variables ==================== */
+:root {
+    --pink-deep: #c44569;
+    --pink-main: #ff6b9d;
+    --pink-soft: #ff8fb3;
+    --pink-light: #ffb3c6;
+    --pink-pale: #ffd1dc;
+    --cream: #fff5f7;
+    --white-soft: #fff0f3;
+    --green-dark: #2d5a3d;
+    --green-leaf: #3d7a4d;
+    --gold: #ffd700;
+    --shadow-pink: rgba(196, 69, 105, 0.3);
+    --shadow-soft: rgba(255, 107, 157, 0.2);
+}
+
+/* ==================== Reset & Base ==================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #ffd1dc 0%, #ffb3c6 25%, #ff8fb3 50%, #ff6b9d 75%, #c44569 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* ==================== Falling Hearts ==================== */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -50px;
+    animation: fallHeart linear forwards;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+@keyframes fallHeart {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* ==================== Main Container ==================== */
+.main-container {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ==================== Stage System ==================== */
+.stage {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stage.active {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.stage.exit {
+    opacity: 0;
+    transform: scale(0.8) translateY(-30px);
+    pointer-events: none;
+}
+
+/* ==================== Rose Stage ==================== */
+.rose-wrapper {
+    cursor: pointer;
+    filter: drop-shadow(0 20px 40px var(--shadow-pink));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rose-wrapper:hover {
+    transform: scale(1.08);
+}
+
+.rose-wrapper:active {
+    transform: scale(1.15);
+}
+
+.rose {
+    width: 180px;
+    height: 270px;
+    animation: roseFloat 3s ease-in-out infinite;
+}
+
+@keyframes roseFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.rose-head {
+    filter: drop-shadow(0 5px 15px rgba(196, 69, 105, 0.5));
+}
+
+.petal {
+    transform-origin: center bottom;
+    animation: petalPulse 4s ease-in-out infinite;
+}
+
+.petal-1 { animation-delay: 0s; }
+.petal-2 { animation-delay: 0.3s; }
+.petal-3 { animation-delay: 0.6s; }
+.petal-4 { animation-delay: 0.9s; }
+.petal-5 { animation-delay: 1.2s; }
+.petal-6 { animation-delay: 1.5s; }
+.petal-7 { animation-delay: 1.8s; }
+
+@keyframes petalPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.stem {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+}
+
+.leaf {
+    animation: leafSway 3s ease-in-out infinite;
+    transform-origin: center left;
+}
+
+.leaf-2 {
+    animation-delay: 1.5s;
+    transform-origin: center right;
+}
+
+@keyframes leafSway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.sparkle {
+    animation: sparkleGlow 2s ease-in-out infinite;
+}
+
+.sparkle-1 { animation-delay: 0s; }
+.sparkle-2 { animation-delay: 0.5s; }
+.sparkle-3 { animation-delay: 1s; }
+.sparkle-4 { animation-delay: 1.5s; }
+
+@keyframes sparkleGlow {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ==================== Instruction Text ==================== */
+.instruction-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--white-soft);
+    margin-top: 30px;
+    text-shadow: 0 2px 10px var(--shadow-pink);
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.9; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+}
+
+/* ==================== Envelope Stage ==================== */
+.envelope-wrapper {
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.envelope-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.envelope-wrapper:active {
+    transform: scale(1.1);
+}
+
+.envelope {
+    width: 320px;
+    height: 220px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #ff8fb3 0%, #ff6b9d 50%, #c44569 100%);
+    border-radius: 8px;
+    box-shadow: 
+        0 15px 40px var(--shadow-pink),
+        inset 0 -5px 20px rgba(196, 69, 105, 0.3);
+}
+
+.envelope-back::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.envelope-flap {
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(180deg, #ffb3c6 0%, #ff8fb3 100%);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top center;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 5px 20px rgba(196, 69, 105, 0.3);
+}
+
+.envelope-flap::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--pink-deep);
+    border-radius: 50%;
+    box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-letter {
+    position: absolute;
+    width: 280px;
+    height: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(180deg, var(--cream) 0%, var(--white-soft) 100%);
+    border-radius: 4px;
+    z-index: 2;
+    transition: transform 0.8s ease 0.3s;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.envelope.open .envelope-letter {
+    transform: translate(-50%, -150%);
+}
+
+.letter-content {
+    padding: 20px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease 0.8s, transform 0.5s ease 0.8s;
+}
+
+.envelope.open .letter-content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ==================== Letter Stage ==================== */
+.letter-stage {
+    width: 100%;
+    max-width: 600px;
+}
+
+.letter-card {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--white-soft) 100%);
+    padding: 50px 40px;
+    border-radius: 16px;
+    box-shadow: 
+        0 25px 60px var(--shadow-pink),
+        0 10px 30px rgba(196, 69, 105, 0.2),
+        inset 0 0 60px rgba(255, 209, 220, 0.3);
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: letterReveal 1s ease forwards;
+    border: 3px solid var(--pink-soft);
+}
+
+@keyframes letterReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.letter-decoration {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--pink-soft);
+    opacity: 0.6;
+}
+
+.letter-decoration.top-left {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+    border-radius: 8px 0 0 0;
+}
+
+.letter-decoration.top-right {
+    top: 15px;
+    right: 15px;
+    border-left: none;
+    border-bottom: none;
+    border-radius: 0 8px 0 0;
+}
+
+.letter-decoration.bottom-left {
+    bottom: 15px;
+    left: 15px;
+    border-right: none;
+    border-top: none;
+    border-radius: 0 0 0 8px;
+}
+
+.letter-decoration.bottom-right {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+    border-radius: 0 0 8px 0;
+}
+
+.letter-greeting {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--pink-deep);
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(196, 69, 105, 0.2);
+    animation: textFadeIn 0.8s ease 0.3s both;
+}
+
+.letter-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+    text-align: justify;
+    animation: textFadeIn 0.8s ease forwards;
+}
+
+.letter-body:nth-of-type(1) { animation-delay: 0.5s; }
+.letter-body:nth-of-type(2) { animation-delay: 0.7s; }
+.letter-body:nth-of-type(3) { animation-delay: 0.9s; }
+
+@keyframes textFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.letter-signature {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--pink-deep);
+    text-align: right;
+    margin-top: 30px;
+    padding-right: 20px;
+    animation: textFadeIn 0.8s ease 1.1s both;
+}
+
+.signature-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: var(--pink-main);
+}
+
+/* ==================== Final Hearts ==================== */
+.final-hearts {
+    position: absolute;
+    top: -60px;
+    right: 20px;
+    opacity: 0;
+    animation: finalHeartPop 0.6s ease 1.3s forwards;
+}
+
+@keyframes finalHeartPop {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-20deg);
+    }
+    50% {
+        transform: scale(1.3) rotate(10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.final-heart {
+    width: 60px;
+    height: 60px;
+    color: var(--pink-deep);
+    filter: drop-shadow(0 5px 15px var(--shadow-pink));
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    .rose {
+        width: 150px;
+        height: 225px;
+    }
+
+    .instruction-text {
+        font-size: 1.6rem;
+    }
+
+    .envelope {
+        width: 280px;
+        height: 190px;
+    }
+
+    .envelope-letter {
+        width: 240px;
+        height: 150px;
+    }
+
+    .letter-card {
+        padding: 40px 25px;
+        margin: 15px;
+    }
+
+    .letter-greeting {
+        font-size: 1.8rem;
+    }
+
+    .letter-body {
+        font-size: 0.9rem;
+    }
+
+    .signature-name {
+        font-size: 1.5rem;
+    }
+
+    .final-hearts {
+        top: -50px;
+        right: 10px;
+    }
+
+    .final-heart {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rose {
+        width: 130px;
+        height: 195px;
+    }
+
+    .envelope {
+        width: 250px;
+        height: 170px;
+    }
+
+    .envelope-letter {
+        width: 210px;
+        height: 130px;
+    }
+
+    .letter-card {
+        padding: 30px 20px;
+    }
+
+    .letter-greeting {
+        font-size: 1.6rem;
+    }
+
+    .letter-body {
+        font-size: 0.85rem;
+        line-height: 1.7;
+    }
+
+    .letter-decoration {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ==================== Reduced Motion ==================== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    body {
+        background-size: 100% 100%;
+        animation: none;
+    }
+    
+    .falling-heart {
+        display: none;
+    }
+}

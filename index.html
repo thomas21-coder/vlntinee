@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine, Sayang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Falling Hearts Container -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Stage 1: Rose -->
+        <section class="stage rose-stage active" id="roseStage">
+            <div class="rose-wrapper" id="roseWrapper">
+                <svg class="rose" viewBox="0 0 200 300" id="rose">
+                    <!-- Rose Stem -->
+                    <path class="stem" d="M100 300 Q95 250 100 200 Q105 150 100 100" stroke="#2d5a3d" stroke-width="4" fill="none"/>
+                    
+                    <!-- Rose Leaves -->
+                    <path class="leaf leaf-1" d="M100 220 Q80 200 60 220 Q80 240 100 220" fill="#3d7a4d"/>
+                    <path class="leaf leaf-2" d="M100 180 Q120 160 140 180 Q120 200 100 180" fill="#3d7a4d"/>
+                    
+                    <!-- Rose Petals -->
+                    <g class="rose-head">
+                        <ellipse class="petal petal-1" cx="100" cy="70" rx="35" ry="40" fill="#c44569"/>
+                        <ellipse class="petal petal-2" cx="85" cy="85" rx="30" ry="35" fill="#e05a7a"/>
+                        <ellipse class="petal petal-3" cx="115" cy="85" rx="30" ry="35" fill="#e05a7a"/>
+                        <ellipse class="petal petal-4" cx="100" cy="60" rx="25" ry="30" fill="#ff6b9d"/>
+                        <ellipse class="petal petal-5" cx="90" cy="75" rx="20" ry="25" fill="#ff8fb3"/>
+                        <ellipse class="petal petal-6" cx="110" cy="75" rx="20" ry="25" fill="#ff8fb3"/>
+                        <ellipse class="petal petal-7" cx="100" cy="50" rx="15" ry="20" fill="#ffb3c6"/>
+                        
+                        <!-- Rose Center -->
+                        <circle class="rose-center" cx="100" cy="65" r="12" fill="#c44569"/>
+                        <path class="rose-spiral" d="M100 65 Q105 60 100 55 Q95 60 100 65 Q105 70 100 75 Q95 70 100 65" stroke="#a03050" stroke-width="1.5" fill="none"/>
+                    </g>
+                    
+                    <!-- Sparkles around rose -->
+                    <circle class="sparkle sparkle-1" cx="60" cy="50" r="2" fill="#ffd700"/>
+                    <circle class="sparkle sparkle-2" cx="140" cy="60" r="2" fill="#ffd700"/>
+                    <circle class="sparkle sparkle-3" cx="70" cy="100" r="1.5" fill="#ffd700"/>
+                    <circle class="sparkle sparkle-4" cx="130" cy="90" r="1.5" fill="#ffd700"/>
+                </svg>
+            </div>
+            <p class="instruction-text" id="roseText">Sentuh mawarnya dulu sayang</p>
+        </section>
+
+        <!-- Stage 2: Envelope -->
+        <section class="stage envelope-stage" id="envelopeStage">
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-back"></div>
+                    <div class="envelope-letter" id="envelopeLetter">
+                        <div class="letter-content" id="letterContent">
+                            <p class="letter-greeting">Selamat Hari Valentine, cintaku.</p>
+                            <p class="letter-body">Terima kasih sudah hadir dalam hidupku dan mengubah hari-hariku menjadi lebih berarti. Bersamamu, aku belajar bahwa cinta bukan hanya tentang kata-kata indah, tetapi tentang kesabaran, pengertian, dan saling menjaga.</p>
+                            <p class="letter-body">Setiap senyummu adalah alasanku untuk bersyukur. Setiap pelukanmu adalah rumah ternyaman untuk hatiku. Jika aku boleh meminta satu hal, aku ingin kita terus berjalan bersama—melewati tawa, air mata, dan semua cerita yang belum sempat kita tulis.</p>
+                            <p class="letter-body">Aku mencintaimu, hari ini, esok, dan seterusnya.</p>
+                            <p class="letter-signature">Dengan penuh cinta,<br><span class="signature-name">(Namamu)</span></p>
+                        </div>
+                    </div>
+                    <div class="envelope-front">
+                        <div class="envelope-flap" id="envelopeFlap"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="instruction-text" id="envelopeText">Buka suratnya sayang</p>
+        </section>
+
+        <!-- Stage 3: Letter Revealed -->
+        <section class="stage letter-stage" id="letterStage">
+            <div class="letter-card" id="letterCard">
+                <div class="letter-decoration top-left"></div>
+                <div class="letter-decoration top-right"></div>
+                <div class="letter-decoration bottom-left"></div>
+                <div class="letter-decoration bottom-right"></div>
+                <p class="letter-greeting">Selamat Hari Valentine, cintaku.</p>
+                <p class="letter-body">Terima kasih sudah hadir dalam hidupku dan mengubah hari-hariku menjadi lebih berarti. Bersamamu, aku belajar bahwa cinta bukan hanya tentang kata-kata indah, tetapi tentang kesabaran, pengertian, dan saling menjaga.</p>
+                <p class="letter-body">Setiap senyummu adalah alasanku untuk bersyukur. Setiap pelukanmu adalah rumah ternyaman untuk hatiku. Jika aku boleh meminta satu hal, aku ingin kita terus berjalan bersama—melewati tawa, air mata, dan semua cerita yang belum sempat kita tulis.</p>
+                <p class="letter-body">Aku mencintaimu, hari ini, esok, dan seterusnya.</p>
+                <p class="letter-signature">Dengan penuh cinta,<br><span class="signature-name">(Muhammad Busthomi Firmansyah)</span></p>
+            </div>
+            <div class="final-hearts">
+                <svg class="final-heart" viewBox="0 0 100 100">
+                    <path d="M50 88 C20 60 5 40 5 25 C5 10 20 0 35 0 C45 0 50 10 50 15 C50 10 55 0 65 0 C80 0 95 10 95 25 C95 40 80 60 50 88Z" fill="currentColor"/>
+                </svg>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
